@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from "react";
 
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -10,57 +11,71 @@ import { useStoreModal } from "@/hooks/use-store-modal";
 import { Form, FormMessage, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
 
 const formSchema = z.object({
-    name: z.string().min(1, "Name is required"),
+    name: z.string().min(3, "Name must be at least 3 characters long"),
 });
 
 export const StoreModal = () => {
-
     const storeModal = useStoreModal();
+    const [loading, setLoading] = useState(false);
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
         },
+        mode: "onChange",
     }); 
 
+    useEffect(() => {
+        if (!storeModal.isOpen) {
+            form.reset();
+        }
+    }, [storeModal.isOpen, form]);
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
-        console.log(values);
-        // TODO: Create Store
+        try {
+            setLoading(true);
+            console.log(values);
+            // TODO: Create Store
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-    <Modal
-        title="Create store"
-        description="add new store to mange products and categories"
-        isOpen={storeModal.isOpen}
-        onClose={storeModal.onClose}
-    >
-        <div>
-            <div className="space-y-4 py-2 pb-4">
-                <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)}>
-                        <FormField 
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel>Name</FormLabel>
-                                    <FormControl>
-                                        <Input placeholder="E-commerce" {...field}/>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        /> 
-                        <div className="pt-6 space-x-2 flex items-center justify-end w-full">
-                            <Button variant="outline" onClick={storeModal.onClose}>Cancel</Button>
-                            <Button type="submit">Continue</Button>
-                        </div>
-                    </form>
-                </Form>
+        <Modal
+            title="Create store"
+            description="add new store to mange products and categories"
+            isOpen={storeModal.isOpen}
+            onClose={storeModal.onClose}
+        >
+            <div>
+                <div className="space-y-4 py-2 pb-4">
+                    <Form {...form}>
+                        <form onSubmit={form.handleSubmit(onSubmit)}>
+                            <FormField
+                                control={form.control}
+                                name="name"
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>Name</FormLabel>
+                                        <FormControl>
+                                            <Input placeholder="E-commerce" {...field} />
+                                        </FormControl>
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
+                            />
+                            <div className="pt-6 space-x-2 flex items-center justify-end w-full">
+                                <Button disabled={loading} variant="outline" type="button" onClick={storeModal.onClose}>Cancel</Button>
+                                <Button disabled={loading} type="submit">Continue</Button>
+                            </div>
+                        </form>
+                    </Form>
+                </div>
             </div>
-        </div>
-    </Modal>
+        </Modal>
     );
 };

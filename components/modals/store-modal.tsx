@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-
+import axios from "axios";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import { Modal } from "@/components/ui/modal";
 import { useStoreModal } from "@/hooks/use-store-modal";
 import { Form, FormMessage, FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
+import { toast } from "react-hot-toast";
 
 const formSchema = z.object({
     name: z.string().min(3, "Name must be at least 3 characters long"),
@@ -35,10 +36,10 @@ export const StoreModal = () => {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             setLoading(true);
-            console.log(values);
-            // TODO: Create Store
+            const response = await axios.post("/api/stores", values);
+            toast.success("Store created successfully");
         } catch (error) {
-            console.log(error);
+            toast.error("Something went wrong");
         } finally {
             setLoading(false);
         }
@@ -62,7 +63,7 @@ export const StoreModal = () => {
                                     <FormItem>
                                         <FormLabel>Name</FormLabel>
                                         <FormControl>
-                                            <Input placeholder="E-commerce" {...field} />
+                                            <Input disabled={loading} placeholder="E-commerce" {...field} />
                                         </FormControl>
                                         <FormMessage />
                                     </FormItem>

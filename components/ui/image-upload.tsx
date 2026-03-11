@@ -55,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                     </div>
                 ))}
             </div>
-            <CldUploadWidget onSuccess={onUpload} uploadPreset="ecommerce-admin-preset">
+            <CldUploadWidget onSuccess={onUpload} uploadPreset="ecommerce-admin-preset" options={{ multiple: true }}>
                 {({ open }) => {
                     const onClick = () => open();
                     return (
@@ -66,7 +66,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
                             onClick={onClick}
                         >
                             <ImagePlus className="h-4 w-4 mr-2"/>
-                            Upload an Image
+                            Upload Image(s)
                         </Button>
                     );
                 }}

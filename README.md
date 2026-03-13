@@ -1,8 +1,8 @@
-# Luxe. Admin Dashboard 💎
+# FakeStoreName Admin Dashboard 💎
 
 ### Developed by **Youssef Emad Kamel**
 
-A professional, high-performance E-commerce Admin Dashboard designed to manage multiple stores, products, and analytics with ease. This project serves as the backbone for the "Luxe." storefront experience.
+A professional, high-performance E-commerce Admin Dashboard designed to manage multiple stores, products, and analytics with ease. This project serves as the backbone for the "FakeStoreName" storefront experience.
 
 ---
 

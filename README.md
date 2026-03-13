@@ -1,4 +1,4 @@
-# FakeStoreName Admin Dashboard 💎
+# E-Commerce Admin Dashboard 💎
 
 ### Developed by **Youssef Emad Kamel**
 

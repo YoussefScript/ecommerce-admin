@@ -1,16 +1,20 @@
 "use client";
 
+import { 
+    DropdownMenu, 
+    DropdownMenuContent, 
+    DropdownMenuItem, 
+    DropdownMenuTrigger 
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
-import { useParams, usePathname } from "next/navigation";
 
-export function MainNav({
-    className,
-    ...props
-}: React.HtmlHTMLAttributes<HTMLDivElement>) {
-
+export const MobileNav = () => {
     const pathname = usePathname();
     const params = useParams();
+    const router = useRouter();
 
     const routes = [
         {
@@ -56,21 +60,28 @@ export function MainNav({
     ];
 
     return (
-        <nav
-            className={cn("hidden md:flex items-center space-x-4 lg:space-x-6", className)}
-        >   
-            {routes.map((route) => (
-                <Link
-                    key={route.href}
-                    href={route.href}
-                    className={cn(
-                        "text-sm font-medium transition-colors hover:text-primary",
-                        route.active ? "text-black dark:text-white" : "text-muted-foreground"
-                    )}
-                >
-                    {route.label}
-                </Link>
-            ))}
-        </nav>
+        <div className="md:hidden">
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="icon">
+                        <Menu className="h-4 w-4" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="w-56">
+                    {routes.map((route) => (
+                        <DropdownMenuItem
+                            key={route.href}
+                            onClick={() => router.push(route.href)}
+                            className={cn(
+                                "text-sm font-medium transition-colors",
+                                route.active ? "text-black bg-accent" : "text-muted-foreground"
+                            )}
+                        >
+                            {route.label}
+                        </DropdownMenuItem>
+                    ))}
+                </DropdownMenuContent>
+            </DropdownMenu>
+        </div>
     );
 };

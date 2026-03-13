@@ -5,6 +5,8 @@ import { auth } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 
+import { MobileNav } from "./mobile-nav";
+
 const Navbar = async () => {
 
     const { userId } = await auth();
@@ -21,8 +23,9 @@ const Navbar = async () => {
 
     return (
         <>
-            <div className="border-b">
-                <div className="flex h-16 items-center px-4">
+            <div className="border-b shadow-sm">
+                <div className="flex h-16 items-center px-4 gap-x-4">
+                    <MobileNav />
                     <StoreSwitcher items={stores}/>
                     <MainNav className="mx-6"/>
                     <div className="ml-auto flex items-center space-x-4">

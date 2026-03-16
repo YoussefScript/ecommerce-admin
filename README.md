@@ -3,6 +3,7 @@
 ### Developed by **Youssef Emad Kamel**
 
 A professional, high-performance E-commerce Admin Dashboard designed to manage multiple stores, products, and analytics with ease. This project serves as the backbone for the "FakeStoreName" storefront experience.
+<img width="955" height="801" alt="image" src="https://github.com/user-attachments/assets/7d5672a9-7770-40df-9bce-f6d2d5031db6" />
 
 ---
 

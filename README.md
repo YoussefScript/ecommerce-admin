@@ -1,7 +1,5 @@
 # E-Commerce Admin Dashboard 💎
 
-### Developed by **Emad Kamel Ayad**
-
 A professional, high-performance E-commerce Admin Dashboard designed to manage multiple stores, products, and analytics with ease. This project serves as the backbone for the "FakeStoreName" storefront experience.
 <img width="955" height="801" alt="image" src="https://github.com/user-attachments/assets/7d5672a9-7770-40df-9bce-f6d2d5031db6" />
 
@@ -68,10 +66,5 @@ npm run dev
 
 ## 📜 License
 
-Copyright (c) 2026 **Emad Kamel Ayad**. 
+Copyright (c) 2026 **Youssef Emad Kamel**. 
 All rights reserved. See the [LICENSE](./LICENSE) file for more details.
-
----
-
-*“Crafting premium digital experiences, one store at a time.”* — **Youssef Emad Kamel**
-
